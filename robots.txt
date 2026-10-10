@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reflectme-source.github.io/originduty-site/sitemap.xml

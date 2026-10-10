@@ -1,0 +1,6 @@
+'use strict';
+const toggle=document.querySelector('.menu-toggle');
+const menu=document.querySelector('#mobile-menu');
+if(toggle&&menu){toggle.addEventListener('click',()=>{const isOpen=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!isOpen));menu.hidden=isOpen;});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false');}));}
+const indicator=document.querySelector('#source-indicator');
+if(indicator){(async()=>{try{const response=await fetch('https://public-pilot-production.up.railway.app/regulations.json',{cache:'no-store',mode:'cors',signal:AbortSignal.timeout(10000)});if(!response.ok)throw new Error('Unavailable');const payload=await response.json();if(!payload||!payload.generatedAt||!Array.isArray(payload.acts))throw new Error('Bad response');const age=Date.now()-Date.parse(payload.generatedAt);if(payload.status==='ok'&&age>=0&&age<48*3600000)indicator.textContent='Źródło odczytane: '+new Date(payload.generatedAt).toLocaleDateString('pl-PL')+' · '+payload.acts.length+' akty';else indicator.textContent='Monitoring częściowy — otwórz panel po szczegóły';}catch{indicator.textContent='Stan źródła niedostępny — sprawdź w panelu';}})();}

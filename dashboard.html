@@ -1,0 +1,38 @@
+<!doctype html><html lang="pl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b1827">
+<title>Panel danych EU Trade Defence | OriginDuty</title><meta name="description" content="Publiczny panel dokumentów antydumpingowych UE. Filtruj kandydackie akty EUR-Lex według TARIC, kraju i środka. Dane na żywo z OriginDuty.">
+<link rel="canonical" href="https://reflectme-source.github.io/originduty-site/dashboard.html">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./assets/site.css">
+<script src="./assets/dashboard.js" defer></script></head>
+<body class="dash-page">
+<a href="#main" class="skip">Przejdź do panelu</a>
+<header class="header"><div class="container header-content"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Origin<span class="thin">Duty</span></span></a><nav class="nav-desktop" aria-label="Menu"><a href="./">Strona produktu</a><a href="./#how">Metodologia</a><a href="./#evidence">Analizy</a></nav><div class="header-actions"><span class="dash-label">PUBLIC RESEARCH PREVIEW</span><a href="./#contact" class="btn btn-small btn-outline">Zgłoś pilotaż ↗</a></div></div></header>
+<main id="main">
+<section class="dash-top"><div class="container">
+<p class="dash-breadcrumb"><a href="./">ORIGINDUTY</a> / EVIDENCE DESK / PUBLIC PREVIEW</p>
+<h1>Regulatory intelligence <span style="color:#a7efd1">desk.</span></h1>
+<p>Lista potencjalnie istotnych aktów prawa UE pobieranych ze źródeł urzędowych. Filtruj według dokładnego TARIC, rodziny CN i kraju. Każdy dokument wymaga weryfikacji zastosowania do konkretnego produktu i producenta.</p>
+</div></section>
+<div class="container dash-main">
+<div class="dash-toolbar"><div class="dash-last-updated" id="feed-updated" role="status" aria-live="polite">Wczytywanie źródła UE…</div><button class="btn" type="button" id="refresh" aria-label="Odśwież dane źródłowe">Odśwież dane ↻</button></div>
+<div class="stat-cards" aria-label="Metryki źródłowe">
+<article class="stat-card"><span>WYKRYTE AKTY</span><strong id="stat-docs">—</strong><small>W bieżącym dostępnym zestawie</small></article>
+<article class="stat-card"><span>UNIKALNE KODY TARIC</span><strong id="stat-codes">—</strong><small>Wskazane w dokumentach kandydackich</small></article>
+<article class="stat-card"><span>JAKOŚĆ ODCZYTU</span><strong id="stat-quality" style="font-size:23px">Ładowanie</strong><small id="stat-quality-detail">Status oficjalnego feedu</small></article>
+</div>
+<div id="feed-alert" class="dash-alert" role="status" aria-live="polite">Źródłem danych jest OriginDuty API / EUR-Lex. Brak dopasowania nie potwierdza braku obowiązków celnych.</div>
+<div class="dash-shell">
+<aside class="dash-filters" aria-label="Filtry dokumentów">
+<h2>Filtruj dokumenty</h2>
+<div class="field"><label for="q-code">Kod CN / TARIC</label><input type="search" id="q-code" placeholder="np. 3905300091" inputmode="numeric" autocomplete="off" maxlength="20"></div>
+<div class="field"><label for="q-country">Kraj pochodzenia</label><select id="q-country"><option value="">Wszystkie kraje</option></select></div>
+<div class="field"><label for="q-type">Rodzaj środka</label><select id="q-type"><option value="">Wszystkie rodzaje</option><option value="anti-dumping">Antydumping</option><option value="countervailing">Wyrównawcze</option><option value="safeguard">Ochronne</option></select></div>
+<div class="field"><label for="q-action">Rodzaj działania</label><select id="q-action"><option value="">Wszystkie</option><option value="registration">Rejestracja importu</option><option value="amendment">Zmiana przepisu</option><option value="potential-refund">Potencjalny zwrot</option><option value="new-measure">Nowy środek</option></select></div>
+<button id="clear" type="button" class="clear-filters">Wyczyść wszystkie filtry ↺</button>
+</aside>
+<div class="dash-results"><div class="dash-results-top"><h2>Rejestr dokumentów</h2><span id="results-count" class="results-count">—</span></div><div id="results" class="doc-list" aria-live="polite"><div class="empty-state"><strong>Pobieramy dokumenty.</strong><span>Odczyt oficjalnego feedu i bazy kandydackiej…</span></div></div></div>
+</div>
+<div class="dashboard-disclaimer"><strong>Ważne:</strong> to publiczna wyszukiwarka dokumentów kandydackich, nie indywidualny panel klienta ani pełna baza TARIC. Dane aktualizuje zaplanowany proces, mogą być opóźnione, niepełne lub niedostępne. Wymagane jest sprawdzenie zakresu towaru, producenta, 10-cyfrowego kodu, dodatkowych kodów, dat oraz aktualnego tekstu przepisów. Nie przechowujemy prywatnych list importowych w przeglądarce.</div>
+</div></main>
+<footer class="footer"><div class="container footer-bottom" style="border-top:none"><span>OriginDuty by ForgeFrame Labs · © 2026</span><span><a href="./privacy.html">Prywatność</a> · <a href="./terms.html">Warunki</a> · <a href="./">Strona główna</a></span></div></footer>
+</body></html>

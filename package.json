@@ -1,0 +1,10 @@
+{
+  "name": "originduty-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/site.test.mjs",
+    "check": "node --check assets/site.js && node --check assets/dashboard.js"
+  }
+}
