@@ -11,7 +11,7 @@ function exactCodes(act){return (Array.isArray(act.codes)?act.codes:[]).filter(x
 function countries(act){return (Array.isArray(act.countries)?act.countries:[]).filter(x=>/^[A-Z]{2}$/.test(String(x))).map(String);}
 function sourceHref(act){const uri=String(act.source_url||'');try{const u=new URL(uri);return u.protocol==='https:'&&u.hostname==='eur-lex.europa.eu'&&/^3\d{4}[A-Z]\d{4,6}$/.test(act.celex)?uri:null;}catch{return null;}}
 function trimTitle(v){const s=String(v||'');return s.length>220?s.slice(0,220)+'…':s;}
-function meta(label,value){const span=node('span');const b=node('b',value);span.append(b,node('span','  '+label));return span;}
+function meta(label,value){const span=node('span');span.append(node('span',label+' '),node('b',value));return span;}
 function card(act){
  const article=node('article',null,'doc-card');
  const top=node('div',null,'doc-meta');top.append(node('span',TYPE[act.kind]||'Dokument UE','pill'),node('span','Do weryfikacji','pill review'));
@@ -72,7 +72,7 @@ async function load(){
   snapshot=data;
   const allCodes=new Set(data.acts.flatMap(exactCodes));
   setStat('#stat-docs',data.acts.length);setStat('#stat-codes',allCodes.size);
-  const {stale}=freshness(data);setStat('#stat-quality',stale?'Ograniczone':'Zgodne');
+  const {stale}=freshness(data);setStat('#stat-quality',stale?'Ograniczony':'OK');
   $('#stat-quality-detail').textContent=stale?'Feed częściowy lub przeterminowany':'Ostatni przegląd bez błędów';
   $('#feed-updated').textContent='Dane źródłowe: '+dateDisplay(data.generatedAt)+' · EUR-Lex / CELLAR';
   setAlert(stale?'Uwaga: stan źródła jest częściowy lub starszy niż 48 godzin. Wyniki mogą być nieaktualne; brak dopasowania niczego nie potwierdza.':'Dane pochodzą z ostatniego przeglądu oficjalnego feedu. Zakres jest ograniczony do aktów wykrytych przez importer; wymagają dalszej analizy.',stale?'error':'info');
